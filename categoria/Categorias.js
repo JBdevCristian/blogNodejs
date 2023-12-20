@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const connection = require("../database/database")
 
-const Category = connection.define('categories', { //criado uma nova tabela
+const Categorias = connection.define('categories', { //criado uma nova tabela
     title:{
         type: Sequelize.STRING,
         allowNull: false
@@ -11,4 +11,5 @@ const Category = connection.define('categories', { //criado uma nova tabela
     }
 })
 
-module.exports = Category;
+
+module.exports = Categorias;

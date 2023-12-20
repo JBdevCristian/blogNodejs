@@ -3,7 +3,7 @@ const router = express.Router();
 
 //poderia utilizar o nome APP ou qualquer outro mas para diferenciar coloquei router para organizar o controler de categories
 
-router.get("/categories", (req, res) => {
+router.get("/categorias", (req, res) => {
     res.send("Rota de categorias")
 });
 

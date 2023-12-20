@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize');
-const connection = require("../database/database")
+const connection = require("../database/database");
+const Category = require('../categoria/categorias');
 
 const Artigos = connection.define('articles', { //criado uma nova tabela
     title:{
@@ -13,5 +14,9 @@ const Artigos = connection.define('articles', { //criado uma nova tabela
         allowNull: false
     }
 })
+
+Category.hasMany(Artigos) //hasMany deininfo 1-p-M
+Artigos.belongsTo(Category) //belongsTo definindo 1-p-1
+
 
 module.exports = Artigos;
