@@ -1,16 +1,20 @@
 const express = require("express");
 const router = express.Router();
 
-//poderia utilizar o nome APP ou qualquer outro mas para diferenciar coloquei router para organizar o controler de categories
 
-router.get("/categorias", (req, res) => {
-    res.send("Rota de categorias")
+router.get("/admin/categorias/novo", (req, res) => {
+    res.render("admin/categorias/noticias")
 });
 
+router.get("/categorias/salvar", (req, res) => {
+    var titulo = req.body.titulo;
 
-router.get("/adm/new", (req, res) => {
-    res.send("Testando nova rota")
+    if (titulo != undefined) {
+
+    } else {
+        res.redirect("admin/categorias/noticias")
+    }
+
 });
-
 
 module.exports = router;
