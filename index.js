@@ -1,10 +1,11 @@
-const express = require('express');
+const express = require("express");
 const app = express(); // EXP express
-const bodyParser = require('body-parser'); //exportando body-parser
-const connection = require("./database/database") //exportando banco de dados
+const bodyParser = require("body-parser"); //exportando body-parser
+const connection = require("./database/database"); //exportando banco de dados
+const slugify = require("slugify"); //adicionando o slug (Abreviação)
 
 const Artigos = require("./artigo/Artigos");
-const Categorias = require("./categoria/Categorias")
+const Categorias = require("./categoria/Categorias");
 
 //controller
 const categoriesController = require("./categoria/controlerC") //importando e definindo controles de outras rotas
@@ -20,8 +21,8 @@ app.set('view engine', 'ejs');
 app.use(express.static('public'));
 
 //Body parser
-app.use(bodyParser.urlencoded({extended: false}));
-app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false})) //Decodificar o form
+app.use(bodyParser.json()); //Ler dados de formulario via JSON 
 
 //database
 connection
@@ -32,12 +33,33 @@ connection
         console.log(err)
     })
 
+app.use("/", categoriesController);
+
 
 
 app.get("/", (req, res) => { //Rota principal
     res.render('index')
 
 });
+
+//Salvando dados de categoria
+app.post("/categoria/salvar", (req, res) => { //criando rota para salvar no banco de dados
+    let titulo = req.body.titulo;
+ 
+     if (titulo != null) {
+ 
+        Categorias.create({ //criando categoria com base no model
+             title: titulo,
+             slug: slugify(titulo)
+         }).then(() => {
+             res.redirect("/")
+         });
+         
+     } else {
+         res.redirect("/admin/categorias/new")
+     }
+ 
+ });
 
 app.listen(8080, () => {
     console.log("Servidor está rodando")
