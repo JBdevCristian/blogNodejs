@@ -9,8 +9,13 @@ router.get("/admin/categorias/new", (req, res) => {
 });
 
 
-router.get("/admin/categorias", (req, res) => [
-    res.render("admin/categorias/index")
-])
+router.get("/admin/categorias", (req, res) => {
+
+    Categoria.findAll().then(categorias => {
+        res.render("admin/categorias/index", {categorias: categorias})
+    })
+
+    
+})
 
 module.exports = router;
