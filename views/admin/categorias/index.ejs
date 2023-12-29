@@ -5,6 +5,7 @@
     
     <br>
     <h2>Categorias</h2>
+    <a class="btn btn-success btn-sm" href="/admin/categorias/new">Criar nova categoria</a>
     <hr>
     <table class="table table-bordered">
         <thead>
@@ -25,7 +26,12 @@
                     <th><%= category.id %></th>
                     <th><%= category.title %></th>
                     <th><%= category.slug %></th>
-                    <th></th>
+                    <th>
+                        <button class="btn btn-warning">Editar</button>
+
+                        <button class="btn btn-danger">Deletar</button>
+
+                    </th>
 
                     </tr>
                 <% }) %>
