@@ -18,4 +18,6 @@ router.get("/admin/categorias", (req, res) => {
     
 })
 
+
+
 module.exports = router;

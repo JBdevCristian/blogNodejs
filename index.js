@@ -61,6 +61,28 @@ app.post("/categoria/salvar", (req, res) => { //criando rota para salvar no banc
  
  });
 
+ //Deletando informação na tabela categorias
+ app.post("/categorias/delete", (req, res) => {
+    var id = req.body.id; //pegando informação do forms
+
+    if(id != undefined) {
+        if(!isNaN(id)) { //se não for um numero
+            Categorias.destroy({ //deletando item da tabela
+                where: { //localizando no banco
+                    id: id //Pegando ID
+                }
+            }).then(() => {
+                res.redirect("/admin/categorias");
+            });
+        }else { //Se não for um numero
+            res.redirect("/admin/categorias");
+        }
+
+    }else { //Se não houver nenhum valor
+        res.redirect("/admin/categorias");
+    }
+});
+
 app.listen(8080, () => {
     console.log("Servidor está rodando")
 })
