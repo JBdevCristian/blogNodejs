@@ -9,4 +9,8 @@ router.get("/admin/categorias/new", (req, res) => {
 });
 
 
+router.get("/admin/categorias", (req, res) => [
+    res.render("admin/categorias/index")
+])
+
 module.exports = router;
