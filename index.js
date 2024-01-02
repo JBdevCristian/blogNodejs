@@ -53,7 +53,7 @@ app.post("/categoria/salvar", (req, res) => { //criando rota para salvar no banc
              title: titulo,
              slug: slugify(titulo)
          }).then(() => {
-             res.redirect("/")
+            res.redirect("/admin/categorias");
          });
          
      } else {
@@ -83,6 +83,9 @@ app.post("/categoria/salvar", (req, res) => { //criando rota para salvar no banc
         res.redirect("/admin/categorias");
     }
 });
+
+
+
 
 app.listen(8080, () => {
     console.log("Servidor está rodando")
