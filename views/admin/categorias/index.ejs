@@ -29,7 +29,7 @@
                     <th>
                         <button class="btn btn-warning">Editar</button>
 
-                        <form method="POST" action="/categorias/delete" style="display: inline;">
+                        <form method="POST" action="/categorias/delete" style="display: inline;" onsubmit="confirmarDelet(event, this)">
                             <input type="hidden" name="id" value="<%= category.id  %>">
                             <button class="btn btn-danger">Deletar</button>
                         </form>
@@ -43,4 +43,23 @@
     </table>
 </div>
 
+
 <%- include('../../partials/footer'); -%>
+<script>
+
+    function confirmarDelet(event, form) {
+        event.preventDefault();
+        
+        Swal.fire({
+        title: "Você quer realmente quer deletar?",
+        icon: "question",
+        showCancelButton: true 
+    }).then((result) => {
+        if(result.isConfirmed) {
+            form.submit();
+        }
+    });
+        
+    }
+
+</script>

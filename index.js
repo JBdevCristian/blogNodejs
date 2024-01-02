@@ -3,6 +3,7 @@ const app = express(); // EXP express
 const bodyParser = require("body-parser"); //exportando body-parser
 const connection = require("./database/database"); //exportando banco de dados
 const slugify = require("slugify"); //adicionando o slug (Abreviação)
+const Alert = require('sweetalert2')//Colocando alertas personalizados
 
 const Artigos = require("./artigo/Artigos");
 const Categorias = require("./categoria/Categorias");
