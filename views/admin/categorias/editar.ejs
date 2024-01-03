@@ -8,8 +8,9 @@
             <h3>Edição de Categorias</h3>
         </div>
         <div class="card-body">
-            <form method="post" action="/categoria/salvar">
+            <form method="post" action="/categorias/atualiza">
                 <input class="form-control mb-4" type="text" name="titulo" placeholder="Defina o titulo da categoria" value="<%= categoria.title %>" />
+                <input type="hidden" name="id" value="<%= categoria.id %>">
                 <button class="btn btn-success">Atualizar</button>
             </form>
         </div>

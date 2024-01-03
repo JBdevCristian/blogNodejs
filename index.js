@@ -84,6 +84,21 @@ app.post("/categoria/salvar", (req, res) => { //criando rota para salvar no banc
     }
 });
 
+ //Editando informação na tabela categorias
+app.post("/categorias/atualiza", (req, res) => {
+    var id = req.body.id;
+    var title = req.body.titulo; //Após o body precisa colocar o atributo name do objeto input
+
+    Categorias.update({title: title, slug: slugify(title)}, {
+        where: {
+            id: id
+        }
+    }).then(() => {
+        res.redirect("/admin/categorias");
+    })
+
+});
+
 
 
 
