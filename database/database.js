@@ -1,8 +1,9 @@
-const Sequelize = require('sequelize');
+const Sequelize = require("sequelize");
 
-const connection = new Sequelize('guiaPress', 'root', '23268265', {
+const connection = new Sequelize('guiapress', 'root', '123456', {
     host: 'localhost',
-    dialect: 'mysql',
+    dialect: 'mysql'
 });
 
 module.exports = connection;
+
