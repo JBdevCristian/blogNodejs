@@ -26,8 +26,8 @@
                             
                             <button class="btn btn-warning">Editar</button>
 
-                            <form method="POST" action="/categories/delete" style="display: inline;">
-                                
+                            <form method="POST" action="/categories/delete" style="display: inline;" onsubmit="confirmarDelet(event, this)">
+
                                 <input type="hidden" name="id" value="<%= category.id %>">
                                 <button class="btn btn-danger">Deletar</button>
                             </form>
@@ -45,3 +45,15 @@
 
 </body>
 <%- include ('../../partials/footer.ejs') %>  
+<script>
+    function confirmarDelet(event, form){
+        var decision = confirm("Você quer deletar essa categoria?")
+        
+        if(decision) {
+            form.submit()
+        }
+        
+
+        event.preventDefault();
+    }
+</script>
