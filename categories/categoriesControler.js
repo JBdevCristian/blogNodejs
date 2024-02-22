@@ -50,7 +50,7 @@ router.post("/categories/delete", (req, res)=> {
     } else {
         res.redirect("/admin/categories")
     }
-})
+});
 
 router.get("/admin/categories/edit/:id", (req, res) => {
     var id = req.params.id;
@@ -70,7 +70,21 @@ router.get("/admin/categories/edit/:id", (req, res) => {
     }).catch(err => {
         res.redirect("admin/categories")
     })
-})
+});
+
+router.post("/categories/update", (req, res)=> {
+    var id = req.body.id;
+    var title = req.body.title;
+
+    Category.update({title: title, slug: slugify(title)}, {
+        where: {
+            id: id
+        }
+    }).then(()=> {
+        console.log("Categoria editada!")
+        res.redirect("/admin/categories")
+    })
+});
 
 
 module.exports = router;

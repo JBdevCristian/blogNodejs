@@ -9,8 +9,9 @@
                 <h2 class="">Editar de Categoria</h2>
             </div>
             <div class="card-body">
-                <form action="/categories/save" method="POST">
+                <form action="/categories/update" method="POST">
                     <input name="title" type="text" class="form-control" placeholder="Defina o Titulo da categoria" value="<%= category.title %>">
+                    <input type="hidden" name="id" value="<%= category.id %>">
                     <button class="btn btn-primary mt-3">Atualizar</button>
                 </form>
             </div>
