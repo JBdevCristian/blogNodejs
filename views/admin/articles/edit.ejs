@@ -11,7 +11,7 @@
             <div class="card-body">
                 
                 <form action="/articles/update" method="POST">
-                    <input type="hidden" value="<%= articles.id %>">
+                    <input type="hidden" value="<%= articles.id %>" name="id">
                     <input value="<%= articles.title %>" name="title" type="text" class="form-control" placeholder="Defina o Titulo do artigo">
                     <textarea id="article" class="form-control mt-5" name="body" placeholder="Digite seu artigo aqui"></textarea>
                     <label class="mt-3" for="">Selecione a categoria:</label>

@@ -79,7 +79,7 @@ router.post("/articles/update", (req, res)=> {
     var title = req.body.title;
     var category = req.body.category;
 
-    Article.update({title: title, body: body, categoryId: category,slug: slugify(title)}, {
+    Article.update({title: title, body: body, categoryId: category,slug: slugify(title)},{
         where: {
             id: id
         }
@@ -87,7 +87,7 @@ router.post("/articles/update", (req, res)=> {
         console.log("Artigo editada!")
         res.redirect("/admin/articles")
     }).catch(err => {
-        res.redirect("/")
+        console.log(err)
     })
 });
 
