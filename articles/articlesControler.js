@@ -9,7 +9,7 @@ router.get("/admin/articles", (req, res) => {
         include: [{model: Category}]
     }).then(articles => {
         res.render("admin/articles/index", {articles: articles})
-    })
+    });
 });
 
 router.get("/admin/articles/new", (req, res) => {
@@ -53,6 +53,42 @@ router.post("/articles/delete", (req, res)=> {
     } else {
         res.redirect("/admin/articles")
     }
+});
+
+router.get("/admin/articles/edit/:id", (req, res) => {
+    var id = req.params.id;
+
+    Article.findByPk(id).then(articles => {
+        if(articles != undefined) {
+
+            Category.findAll().then(categories => {
+                res.render("admin/articles/edit", {articles: articles,categories: categories}) 
+            })
+
+        } else {
+            res.redirect("/")
+        }
+    }).catch(err => {
+        res.redirect("/")
+    })
+})
+
+router.post("/articles/update", (req, res)=> {
+    var id = req.body.id;
+    var body = req.body.body
+    var title = req.body.title;
+    var category = req.body.category;
+
+    Article.update({title: title, body: body, categoryId: category,slug: slugify(title)}, {
+        where: {
+            id: id
+        }
+    }).then(()=> {
+        console.log("Artigo editada!")
+        res.redirect("/admin/articles")
+    }).catch(err => {
+        res.redirect("/")
+    })
 });
 
 

@@ -1,0 +1,61 @@
+<%- include ('../../partials/header.ejs') %>  
+<body>
+    <%- include ('../../partials/navbar.ejs') %>  
+    
+    <div class="container">
+
+        <div class="card mt-5 mb-3">
+            <div class="card-header">
+                <h2 class="">Editar Artigo</h2>
+            </div>
+            <div class="card-body">
+                
+                <form action="/articles/update" method="POST">
+                    <input type="hidden" value="<%= articles.id %>">
+                    <input value="<%= articles.title %>" name="title" type="text" class="form-control" placeholder="Defina o Titulo do artigo">
+                    <textarea id="article" class="form-control mt-5" name="body" placeholder="Digite seu artigo aqui"></textarea>
+                    <label class="mt-3" for="">Selecione a categoria:</label>
+                    <select name="category" class="form-control">
+                        <% categories.forEach((category) => { %>
+
+                            <% if(category.id == articles.categoryId) { %>
+                                <option value="<%= category.id %>" selected><%= category.title %></option>
+                            <% } else { %>
+                                <option value="<%= category.id %>"><%= category.title %></option>
+                            <% } %>
+                            
+
+                        <% }) %>
+                        
+                    </select>       
+                    <button class="btn btn-primary mt-3">Editar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="content" style="display: none;">
+        <%- articles.body %>
+    </div>
+
+
+
+</body>
+<%- include ('../../partials/footer.ejs') %>  
+
+<script src="/tinymce/tinymce.min.js"> </script>
+<script>
+
+    tinymce.init({
+        language: 'pt_BR',
+        actoveEditor: true,
+        selector: "#article",
+        plugins: [
+            'advlist autolink link image lists print preview hr searchreplace wordcount fullscreen insertdatetime media save table paste emoticons'
+        ],
+        init_instance_callback: () => {
+            tinymce.get("article").setContent($("#content").html())
+        }
+    });
+
+</script>
