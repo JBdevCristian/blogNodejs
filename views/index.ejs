@@ -15,18 +15,24 @@
 
 
             <% articles.forEach(article => { %>
-                <div class="card mt-5">
-                    <div class="card-header">
-                        <h2><%= article.title %></h2>
+            <div class="d-flex justify-content-center">
+                    <div class="card mt-5 w-75">
+                        <div class="card-header">
+                            <h2><%= article.title %></h2>
+                        </div>
+                        <div class="card-body">
+                            <a href="/<%= article.slug %>" class="btn btn-primary">Ler artigos</a>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <a href="/<%= article.slug %>" class="btn btn-primary">Ler artigos</a>
-                    </div>
-                </div>    
-                
-
+            </div>
 
             <% }) %>
+
+            <div class="row m-5 d-flex">
+                <div class="col col-12">
+                    <a href="/articles/page/2" style="float: right">Next >>></a>
+                </div>
+            </div>
 
 
         </div>
