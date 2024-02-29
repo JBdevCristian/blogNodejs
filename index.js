@@ -14,10 +14,7 @@ const Article = require("./articles/Article");
 const Category = require("./categories/Category");
 const User = require("./user/User")
 
-//Indicando para o arquivo principal para utilizar o Controller para as rotas funcionarem
-app.use("/", categoriesController);
-app.use("/", articlesController)
-app.use("/", UserController)
+
 
 //view engine
 app.set("view engine", "ejs");
@@ -28,6 +25,11 @@ app.use(express.static('public'));
 //body parser
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
+
+//(Sempre deixar a baixo do Body Parser)Indicando para o arquivo principal para utilizar o Controller para as rotas funcionarem
+app.use("/", categoriesController);
+app.use("/", articlesController)
+app.use("/", UserController)
 
 //database
 connection
@@ -73,6 +75,8 @@ app.get("/:slug", (req, res)=> {
     });
 });
 
+
+
 app.get("/category/:slug", (req, res)=> {
     var slug = req.params.slug;
     Category.findOne({
@@ -91,7 +95,9 @@ app.get("/category/:slug", (req, res)=> {
     }).catch(err => {
         res.redirect("/")
     })
-})
+});
+
+
 
 app.listen(8080, () => {
     console.log("o servidor está rodando!");
