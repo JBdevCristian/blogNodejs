@@ -3,12 +3,21 @@ const app = express();
 const bodyParser = require("body-parser");
 const connection = require("./database/database")
 
+//Associando Controllers - Assim que criar um controller sempre adicionalo no index principal pois por ele que todo o projeto é carregado
 const categoriesController = require("./categories/categoriesControler");
 const articlesController = require("./articles/articlesControler");
+const UserController = require("./user/userControler") 
 
+
+//Associando a criação do banco de dados no arquivo principal.
 const Article = require("./articles/Article");
 const Category = require("./categories/Category");
+const User = require("./user/User")
 
+//Indicando para o arquivo principal para utilizar o Controller para as rotas funcionarem
+app.use("/", categoriesController);
+app.use("/", articlesController)
+app.use("/", UserController)
 
 //view engine
 app.set("view engine", "ejs");
@@ -29,8 +38,7 @@ connection
         console.log(error)
     })
 
-app.use("/", categoriesController);
-app.use("/", articlesController)
+
 
 app.get("/", (req, res) =>{
     Article.findAll({
